@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://java.sun.com/jsf/html">
+
+
+<h:head>
+
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
+
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+
+	<link rel="stylesheet" type="text/css" href="/Vendas/style.css" />
+
+	<title>Clientes Buscar</title>
+
+</h:head>
+<h:body>
+	<h1>
+		<i class="bi bi-search"></i>&nbsp;
+		<h:outputLabel value="Clientes" for="busc_produto" />
+	</h1>
+	<hr />
+	<h:form id="form-buscar-clientes">
+		<h:messages style="color:red; size:16px;" />
+		<div class="box-barra-pesquisa">
+			Cliente
+			<h:inputText id="buscar_produto"
+				value="#{controllerClientes.pesquisa_nome}"
+				styleClass="campo_pesquisar">
+			</h:inputText>
+
+			<h:commandButton id="Filtro_geral" styleClass="pesquisar"
+				value="Pesquisar" action="#{controllerClientes.List_Cliente_Nome()}" />
+			<h:commandButton id="cancela_geral" styleClass="cancelar"
+				value="Cancelar" action="#{controllerPedidos.BT_Pedido_Continuar_Editacao()}" />
+		
+		
+		</div>
+			<!-- box de pesquisa  -->
+		
+		
+		
+
+		<h:dataTable columnClasses="col-codigo,col-dados,col-acao"
+			value="#{controllerClientes.List_Cliente_Nome()}" var="cli">
+			<h:column>
+				<f:facet name="header">Código</f:facet>
+				#{cli.id}	</h:column>
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				#{cli.nome_completo}</h:column>
+			<h:column>
+				<f:facet name="header">Ação</f:facet>
+				<h:commandButton styleClass="selecionar" value="Selecionar"
+					action="#{controllerPedidos.BT_Cliente_Selecionado(cli)}" />
+			</h:column>
+
+		</h:dataTable>
+		<hr />
+	</h:form>
+
+</h:body>
+</html>

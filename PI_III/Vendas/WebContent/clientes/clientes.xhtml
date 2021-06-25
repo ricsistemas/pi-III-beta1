@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Clientes</title>
+
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<script src="../js/bootstrap.min.js" type="" />
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+	<link rel="stylesheet" type="text/css" href="/Vendas/style.css" />
+
+
+</h:head>
+<h:body>
+	<h:form id="form_cliente">
+		<div class="container">
+			<!-- barra top   -->
+			<div id="pedidos">
+				<h1>
+					<i class="bi bi-person"> </i>
+					<h:outputLabel value="Clientes" for="data" />
+				</h1>
+				<hr />
+
+			</div>
+			<!-- barra top   -->
+
+			<h:messages style="color:red; size:16px;" autoupdate="true" />
+			<div class="box-body">
+				<div class="row">
+					Nome completo
+					<h:inputText id="nome" value="#{clientes.nome_completo}" />
+
+				</div>
+				<div class="row">
+					<h:inputHidden value="#{clientes.id}" />
+					<div class="col-25">
+						Genero:
+						<h:selectOneMenu value="#{clientes.genero}">
+							<f:selectItem itemValue="0" itemLabel="" />
+							<f:selectItem itemValue="M" itemLabel="Masculino" />
+							<f:selectItem itemValue="F" itemLabel="Feminino" />
+							<f:selectItem itemValue="O" itemLabel="Outro" />
+						</h:selectOneMenu>
+					</div>
+					<div class="col-15">
+						Data nasc.
+						<h:inputText id="dat_nasc" value="#{clientes.dt_nascimento}">
+							<f:convertDateTime pattern="dd/MM/yyyy">
+							</f:convertDateTime>
+						</h:inputText>
+
+
+					</div>
+
+					<div class="col-15">
+						CPF
+						<h:inputText id="cpf" value="#{clientes.cpf}" />
+					</div>
+					<div class="col-15">
+						RG
+						<h:inputText id="rg" value="#{clientes.rg}" />
+					</div>
+
+					<div class="col-15">
+						Celular
+						<h:inputText id="celula" value="#{clientes.celular}"
+							label="Celular" />
+					</div>
+					<div class="col-15">
+						Telefone fixo
+						<h:inputText id="fone" value="#{clientes.telefone}" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-15">
+						CEP
+						<h:inputText id="cep" value="#{clientes.endereco.cep}" />
+
+					</div>
+					<div class="col-70">
+						Endereco
+						<h:inputText id="endereco" value="#{clientes.endereco.logradouro}" />
+					</div>
+					<div class="col-15">
+						Número
+						<h:inputText id="numero" value="#{clientes.endereco.numero}" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-25">
+						Complemento
+						<h:inputText id="comple" value="#{clientes.endereco.compl}" />
+					</div>
+
+					<div class="col-25">
+						Estado
+						<h:inputText id="estado" value="#{clientes.endereco.estado}" />
+					</div>
+					<div class="col-25">
+						Cidade
+						<h:inputText id="cidade" value="#{clientes.endereco.cidade}" />
+					</div>
+					<div class="col-25">
+						Bairro
+
+						<h:inputText id="bairro" vlue="#{clientes.endereco.bairro}" />
+
+					</div>
+				</div>
+
+
+
+			</div>
+			<div>
+				<hr />
+				<h:commandButton styleClass="cancelar" value="Cancelar"
+					action="#{pageController.moveToCliente_Listar()}" />
+
+				<h:commandButton styleClass="salvar" value="Salvar"
+					action="#{controllerClientes.BT_Salvar(clientes)}" />
+			</div>
+
+		</div>
+		<!-- container geral -->
+
+
+
+
+
+
+		<script>		
+function buscacep() {
+	var cep = $("#cep").val().replace(/\D/g, '');
+
+
+
+
+	  alert("clicou:");
+};
+
+
+
+		
+</script>
+
+
+	</h:form>
+
+</h:body>
+
+</html>
+

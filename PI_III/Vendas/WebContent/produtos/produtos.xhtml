@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://java.sun.com/jsf/html">
+
+
+
+<h:head>
+	<title>Produtos</title>
+
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<script src="../js/bootstrap.min.js" type="" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
+
+<link rel="stylesheet" type="text/css" href="/Vendas/style.css" />
+
+
+
+</h:head>
+<h:body>
+
+	<h:form id="form_produtos">
+
+		<h:inputHidden value="#{produtos.id}" />
+
+
+		<h:panelGrid id="gridLoginSenha" columns="2">
+	     
+             Descricao do Produto:
+			<h:inputText id="desc" value="#{produtos.descricao}" />
+             Custo:
+			<h:inputText id="custo" value="#{produtos.custo}" />
+        
+             Preco:
+			<h:inputText id="preco" value="#{produtos.preco}" />
+
+		</h:panelGrid>
+
+		<h:commandButton id="bt_salvar" styleClass="salvar" value="Salvar"
+			action="#{controllerProdutos.BT_Salvar(produtos)}" />
+
+
+	</h:form>
+
+</h:body>
+
+</html>
+

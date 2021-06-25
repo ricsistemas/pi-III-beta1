@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://java.sun.com/jsf/html">
+
+
+<h:head>
+	<title>Lista de Pedidos</title>
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
+	<h:outputStylesheet library="webjars"
+		name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
+	<link rel="stylesheet" type="text/css" href="/Vendas/style.css" />
+
+</h:head>
+
+<h:body>
+
+	<h:form id="lista_pedidos">
+		<div class="box-topo">
+			<h:commandButton styleClass="home"
+				action="#{pageController.moveToHome()}" value="Home">
+			</h:commandButton>
+
+			<h:commandButton styleClass="novo"
+				action="#{controllerPedidos.BT_Novo()}" value="Novo">
+			</h:commandButton>
+		</div>
+
+		<!-- barra top   -->
+		<h1>
+			<i class="bi bi-stickies"> </i>
+			<h:outputLabel value="Pedidos" for="data_inicial" />
+		</h1>
+		<hr />
+		<h:messages style="color:red; size:16px;" />
+		<div class="box-barra-pesquisa">
+			Data do Pedido
+			<h:inputText id="data_inicial"
+				value="#{controllerPedidos.data_inicial}" styleClass="campo_data">
+				<f:convertDateTime pattern="dd/MM/yyyy">
+				</f:convertDateTime>
+			</h:inputText>
+			<h:message for="data_inicial" />
+			Até
+			<h:inputText id="data_final" value="#{controllerPedidos.data_final}"
+				styleClass="campo_data" validatorMessage="Data final invalida!">
+				<f:convertDateTime pattern="dd/MM/yyyy">
+				</f:convertDateTime>
+			</h:inputText>
+			Cliente
+			<h:inputText id="cli_nome" styleClass="campo_pesquisar"
+				value="#{controllerPedidos.nome_cliente}" />
+			<h:commandButton id="Filtro_geral" styleClass="pesquisar"
+				value="Pesquisar" action="#" />
+
+			<div></div>
+			<!-- box de pesquisa  -->
+		</div>
+		<!-- Pedidos -->
+		<h:dataTable
+			columnClasses="col-data,col-codigo,col-dados,col-valor,col-acao"
+			value="#{controllerPedidos.Listar_Pedidos()}" var="ped">
+			<h:column>
+				<f:facet name="header">Data</f:facet>
+				#{ped.dt_pedido}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Pedido</f:facet>
+					#{ped.id}
+				</h:column>
+			<h:column>
+				<f:facet name="header">Cliente</f:facet>
+					#{ped.clientes.nome_completo}
+				</h:column>
+
+			<h:column>
+				<f:facet name="header">Valor</f:facet>
+				<h:outputText value="#{ped.vl_pedido}">
+					<f:convertNumber type="currency" currencySymbol="R$ "
+						locale="pt_BR" />
+				</h:outputText>
+
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Ação</f:facet>
+				<h:column>
+					<h:commandLink action="#{controllerPedidos.BT_Editar(ped)}"
+						title="Alterar este item" class="bi bi-pen" />&nbsp;&nbsp;&nbsp;   
+						
+					<h:commandLink
+						onclick="if (!confirm('Quer mesmno excluir?')) return false"
+						action="#{controllerPedidos.BT_Pedido_Excluir(ped)}"
+						title="Excluir item" class="bi bi-trash" style="color:red"
+						aria-hidden="true" />
+				</h:column>
+			</h:column>
+
+		</h:dataTable>
+		<hr />
+
+	</h:form>
+
+</h:body>
+
+</html>
+
